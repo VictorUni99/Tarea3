@@ -15,12 +15,16 @@ export type StarProp = {
 
 const Evaluacion = (props: EvalProps) => {
     const handleOnClick = (posicion: number) => {
-        props.onCalificacionChange(posicion + 1);
-    };
+        if (props.calificacion === posicion + 1) {
+          props.onCalificacionChange(0);
+        } else {
+          props.onCalificacionChange(posicion + 1);
+        }
+      };
 
     return (
         <View style={styles.contenedor}>
-            {props.calificacion === 0 && (
+            {props.calificacion == 0 && (
                 <StarEmpty onClick={handleOnClick} posicion={0} />
             )}
             {props.calificacion >= 1 && (

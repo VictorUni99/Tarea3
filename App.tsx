@@ -1,41 +1,10 @@
-import React, { useState } from 'react';
-import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import Inicio from './pantallas/Inicio';
-import Perfil_Victor from './pantallas/perfil_victor';
-import Perfil_Javier from './pantallas/perfil_javier';
-import Evaluacion from './components/evalucion/Evaluacion';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import React from 'react';
+import Navigation from './pantallas/Navigation'; // Ajusta la ruta según la ubicación real de Navigation.tsx
 
-const Stack = createNativeStackNavigator();
-
-const App2 = () => {
-  const [calificacion, setCalificacion] = useState(0);
-
-  const handleCalificacionChange = (valor: number) => {
-    if (calificacion === 1 && valor === 1) {
-      setCalificacion(0);
-    } else {
-      setCalificacion(valor);
-    }
-  };
-
+const App: React.FC = () => {
   return (
-    <NavigationContainer>
-      <Stack.Navigator>
-        <Stack.Screen name="Hogar" component={Inicio} />
-        <Stack.Screen name="Perfil Victor" component={Perfil_Victor} />
-        <Stack.Screen name="Perfil Javier" component={Perfil_Javier} />
-        <Stack.Screen name="Evaluacion" options={{ headerShown: false }}>
-          {() => (
-            <SafeAreaView>
-              <Evaluacion calificacion={calificacion} onCalificacionChange={handleCalificacionChange} />
-            </SafeAreaView>
-          )}
-        </Stack.Screen>
-      </Stack.Navigator>
-    </NavigationContainer>
+    <Navigation />
   );
 }
 
-export default App2;
+export default App;
